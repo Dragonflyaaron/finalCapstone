@@ -20,13 +20,6 @@ if not os.path.exists("user.txt"):
 if not os.path.exists("tasks.txt"):
     with open("tasks.txt", "w") as default_file:
         pass
-
-###======== COMMENTS FOR REVIEWER ======####
-# Refactored the original code to place inside of a function
-# Edited some variable names for code readability 
-# changed how some of the information is stored for calling it later
-###=====================================####
-
 # Define required functions
 
 # Function to create a dictionary of username/password combinations
@@ -262,6 +255,8 @@ def view_mine():
 
     # Get list of tasks by calling task_check
     tasks = task_check()
+    if os.path.getsize("tasks.txt") == 0:
+        print("\nNo tasks assigned, Please type 'a' to assign user a task\n")
 
     # Similiar to the view_all function, loop through each task to print them
 
