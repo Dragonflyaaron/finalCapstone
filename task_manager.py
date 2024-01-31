@@ -585,6 +585,7 @@ def display_statistics():
 
 
 def start():
+    # Global Variables
     global login_menu
     global admin_rights
     global user
@@ -598,16 +599,11 @@ def start():
             login_menu = False # closing our login menu
     
         elif user != "null": # allowing them to log in without admin if details are correct
-            login_menu = False
+           login_menu = False
+    # Initialise menu
     menu()
-# The main program for initialising
-# If admin logs in, assign admin rights
 
-# Global variables.
-
-
-
-#initialising menu
+# Run program on startup
 start()
 
 
