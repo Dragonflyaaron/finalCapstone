@@ -75,9 +75,6 @@ def login():
     print("LOGIN")
     print("\nPlease enter your username/password\nOr enter '-1' in the username field to shutdown.\n")
     curr_user = input("Username: ")
-    if curr_user == "-1":
-        print("\nGoodbye\n")
-        exit()
     curr_pass = input("Password: ")
     print()
 
