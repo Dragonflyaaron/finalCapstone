@@ -73,7 +73,7 @@ def login():
     # Get username and password from user
     
     print("LOGIN")
-    print("\nPlease enter your username/password\nOr enter '-1' in the username field to shutdown.\n")
+    print("\nPlease enter your username/password\n")
     curr_user = input("Username: ")
     curr_pass = input("Password: ")
     print()
