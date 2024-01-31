@@ -71,15 +71,21 @@ def task_check():
 def login():
 
     # Get username and password from user
-
+    
     print("LOGIN")
+    print("\nPlease enter your username/password\nOr enter '-1' in the username field to shutdown.\n")
     curr_user = input("Username: ")
+    if curr_user == "-1":
+        print("\nGoodbye\n")
+        exit()
     curr_pass = input("Password: ")
     print()
 
     # Call username_check to compare login details 
     user_list = username_check()
-
+    if curr_user == "-1":
+        print("\nGoodbye\n")
+        SystemExit
     if curr_user in user_list and user_list.get(curr_user) == curr_pass:
         print(f"Welcome {curr_user}!\n")
         return curr_user
@@ -109,7 +115,8 @@ gr - Generate reports''')
         if admin_rights:
             print ("ds - Display Statistics")
 
-        print("e - exit\n")
+        print("e - logout")
+        print("s - Shutdown\n")
         selection = input().lower()
         print()
 
@@ -133,10 +140,15 @@ gr - Generate reports''')
         elif selection == "ds" and admin_rights:
             display_statistics()
 
+        elif selection == "s":
+            print("\nGoodbye!\n")
+            break
+
         elif selection == "e":
             menu_loop = False
-            print ("\nGoodbye\n")
-            login()
+            print ("\nLogged Out!\n")
+            start()
+            
 
             
 
@@ -173,7 +185,7 @@ def reg_user():
                 confirm_password = input("Confirm Password:\n")
 
                 if new_password == confirm_password:
-                    user_data.write(f"\n{new_username}; {new_password}\n")
+                    user_data.write(f"\n{new_username};{new_password}\n")
                     print (f"\nNew User {new_username} added!")
                     print()
                     user_loop = False
@@ -576,25 +588,32 @@ def display_statistics():
     print()
 
     print("\nEnd of files\n")
+
+
+def start():
+    global login_menu
+    global admin_rights
+    global user
+    login_menu = True
+    admin_rights = False
+    while (login_menu):
+        user = login() # Calling our login function
+
+        if user == "admin":
+            admin_rights = True
+            login_menu = False # closing our login menu
     
-
-# Global variables
-login_menu = True
-admin_rights = False
-
+        elif user != "null": # allowing them to log in without admin if details are correct
+            login_menu = False
+    menu()
 # The main program for initialising
 # If admin logs in, assign admin rights
 
-while (login_menu):
-    user = login() # Calling our login function
+# Global variables.
 
-    if user == "admin":
-        admin_rights = True
-        login_menu = False # closing our login menu
-    
-    elif user != "null": # allowing them to log in without admin if details are correct
-        login_menu = False
+
 
 #initialising menu
-menu()
+start()
+
 
