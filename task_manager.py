@@ -80,9 +80,6 @@ def login():
 
     # Call username_check to compare login details 
     user_list = username_check()
-    if curr_user == "-1":
-        print("\nGoodbye\n")
-        SystemExit
     if curr_user in user_list and user_list.get(curr_user) == curr_pass:
         print(f"Welcome {curr_user}!\n")
         return curr_user
